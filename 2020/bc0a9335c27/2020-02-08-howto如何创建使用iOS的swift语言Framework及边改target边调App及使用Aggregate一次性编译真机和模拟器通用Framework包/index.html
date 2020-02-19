@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包 | foolsparadise虚拟世界愚者乐园!天堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=62605983" charset="UTF-8"></script> -->
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">foolsparadise虚拟世界愚者乐园!天堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/aboutme">About关于本站</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://foolsparadise.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/bc0a9335c27/2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包/" class="article-date">
+  <time datetime="2020-02-08T03:22:33.000Z" itemprop="datePublished">2020-02-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>macOS Catalina Version 10.15 (19A583) Xcode Version 11.x</p>
+<h4 id="framework文件"><a href="#framework文件" class="headerlink" title="framework文件"></a>framework文件</h4><p>创建framework工程,新建NManager.swift文件,内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">@objc class NManager: NSObject &#123;</span><br><span class="line">    @objc public func sayHello() &#123;</span><br><span class="line">        print(&quot;hello&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    public func sayWorld() &#123;</span><br><span class="line">        print(&quot;world&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    @objc func saySwift() &#123;</span><br><span class="line">        print(&quot;swift&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>问题:编译出现 symbol dyld_stub_binder not found (normally in libSystem.dylib).<br>解决:工程中的 Link Binary With Libraries -&gt; 加上libSystem.tbd</p>
+<h4 id="新建swift语言工程调用"><a href="#新建swift语言工程调用" class="headerlink" title="新建swift语言工程调用"></a>新建swift语言工程调用</h4><p>add framework文件<br>主要代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import someFramework</span><br><span class="line">let manager = NManager()</span><br><span class="line">manager.sayHello()</span><br><span class="line">manager.sayWorld()</span><br></pre></td></tr></table></figure></p>
+<h4 id="新建oc语言工程调用"><a href="#新建oc语言工程调用" class="headerlink" title="新建oc语言工程调用"></a>新建oc语言工程调用</h4><p>add framework文件添加到工程中,注意选择项选中Copy items if needed<br>主要代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;someFramework/someFramework-Swift.h&gt;</span><br><span class="line">NManager *manager = [NManager new];</span><br><span class="line">[manager sayHello];</span><br></pre></td></tr></table></figure></p>
+<p>问题:编译出现 image not found<br>解决:在工程Target中的 General -&gt; Frameworks,Libraries,and Embedded Content中将 Embed 改为 Embed Without Signing 或 Embed &amp; Sign 皆可以</p>
+<h4 id="target方式引入Framework"><a href="#target方式引入Framework" class="headerlink" title="target方式引入Framework"></a>target方式引入Framework</h4><p>新建项目引入(看上面)<br>(下面是)target方式引入<br>我们把原先的添加了的framework先丢掉，左上角 File -&gt; save as workspace<br>关闭这个.xcodeproj 文件重新打开这个 .xcworkspace<br>将我们的 Framework 项目 拖到 workspace 中，与 App的target 并行<br>问题:会遇到拖进来的项目没有被正确的识别出来,也没有多出来一个target<br>解决:关掉xcode其它已打开的所有工程项目,保持只留下当前一个项目运行,然后再重新拖项目或重启xcode只打开这一个项目,试试,以后运行,也只保持这一个项目运行,具体原因可能和xcode有关<br>这个时候就会发现，我们就有两个项目了可以分别 build 了<br>到 App 中 工程文件 -&gt; General -&gt;embedded binaries 中将 Framework 下的 .framework 加进来<br>试一试，scheme 选择 App, build 一下是success，<br>我们再来到我们的 XPManager.h ，添加几行代码（当测试）<br>当然还是先build一下我们的XPKit，否则Demo里的framework不更新呐<br>可以直接在项目里用。那么边写边测，还能设断点，完美~跟平时写app没两样<br>当你调用并且运行，发现又报错了<br>且这次我们已经加到 Embedded Binaries 中了，原因是，如果我们在OC项目中引用swift framework，还需要到 build setting 中设置如下： Always Embed Swift Standard Libraries 确认为 Yes<br>到此为止才是真正完美 ~<br>另外: Framework因为真机和模拟器的原因,需要两次编译并lipo -create的方式合并,麻烦<br>用Shell脚本创建通用包<br>创建通用包用到的次数不多，上面的方法够用了，但是如果你还是觉得不方便、很繁琐。那你可以跟我这样做<br>选择XPKit 工程点击左下角 +<br>创建一个 Aggregate 。去个名字，类似 CommonBuilder<br>image.png<br>选中 CommonBuilder -&gt; Build Phases -&gt; 添加New Run Script Phase<br>在编辑器内输入我们的脚本代码，请全部复制，黏贴，记得修改第二步引号内的内容为你的framework name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># Merge Script</span><br><span class="line"># 1</span><br><span class="line"># Set bash script to exit immediately if any commands fail.</span><br><span class="line">set -e</span><br><span class="line"># 2</span><br><span class="line"># Setup some constants for use later on.</span><br><span class="line">FRAMEWORK_NAME=&quot;Your framework name&quot;</span><br><span class="line"># 3</span><br><span class="line"># If remnants from a previous build exist, delete them.</span><br><span class="line">if [ -d &quot;$&#123;SRCROOT&#125;/build&quot; ]; then</span><br><span class="line">rm -rf &quot;$&#123;SRCROOT&#125;/build&quot;</span><br><span class="line">fi</span><br><span class="line"># 4</span><br><span class="line"># Build the framework for device and for simulator (using</span><br><span class="line"># all needed architectures).</span><br><span class="line">xcodebuild -target &quot;$&#123;FRAMEWORK_NAME&#125;&quot; -configuration Release -arch arm64 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes -sdk &quot;iphoneos&quot;</span><br><span class="line">xcodebuild -target &quot;$&#123;FRAMEWORK_NAME&#125;&quot; -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes -sdk &quot;iphonesimulator&quot;</span><br><span class="line"># 5</span><br><span class="line"># Remove .framework file if exists on Desktop from previous run.</span><br><span class="line">if [ -d &quot;$&#123;HOME&#125;/Desktop/$&#123;FRAMEWORK_NAME&#125;.framework&quot; ]; then</span><br><span class="line">rm -rf &quot;$&#123;HOME&#125;/Desktop/$&#123;FRAMEWORK_NAME&#125;.framework&quot;</span><br><span class="line">fi</span><br><span class="line"># 6</span><br><span class="line"># Copy the device version of framework to Desktop.</span><br><span class="line">cp -r &quot;$&#123;SRCROOT&#125;/build/Release-iphoneos/$&#123;FRAMEWORK_NAME&#125;.framework&quot; &quot;$&#123;HOME&#125;/Desktop/$&#123;FRAMEWORK_NAME&#125;.framework&quot;</span><br><span class="line"># 7</span><br><span class="line"># Replace the framework executable within the framework with</span><br><span class="line"># a new version created by merging the device and simulator</span><br><span class="line"># frameworks&apos; executables with lipo.</span><br><span class="line">lipo -create -output &quot;$&#123;HOME&#125;/Desktop/$&#123;FRAMEWORK_NAME&#125;.framework/$&#123;FRAMEWORK_NAME&#125;&quot; &quot;$&#123;SRCROOT&#125;/build/Release-iphoneos/$&#123;FRAMEWORK_NAME&#125;.framework/$&#123;FRAMEWORK_NAME&#125;&quot; &quot;$&#123;SRCROOT&#125;/build/Release-iphonesimulator/$&#123;FRAMEWORK_NAME&#125;.framework/$&#123;FRAMEWORK_NAME&#125;&quot;</span><br><span class="line"># 8</span><br><span class="line"># Copy the Swift module mappings for the simulator into the</span><br><span class="line"># framework.  The device mappings already exist from step 6.</span><br><span class="line">cp -r &quot;$&#123;SRCROOT&#125;/build/Release-iphonesimulator/$&#123;FRAMEWORK_NAME&#125;.framework/Modules/$&#123;FRAMEWORK_NAME&#125;.swiftmodule/&quot; &quot;$&#123;HOME&#125;/Desktop/$&#123;FRAMEWORK_NAME&#125;.framework/Modules/$&#123;FRAMEWORK_NAME&#125;.swiftmodule&quot;</span><br><span class="line"># 9</span><br><span class="line"># Delete the most recent build.</span><br><span class="line">if [ -d &quot;$&#123;SRCROOT&#125;/build&quot; ]; then</span><br><span class="line">rm -rf &quot;$&#123;SRCROOT&#125;/build&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
+<p>如图：<br>scheme 选择 CommonBuilder，任意模拟器，编译，报错了看看报了什么错<br>Command /bin/sh failed with exit code 65<br>你们以后看到这些不用慌，网上看，信息都在上面<br>=== BUILD TARGET XPKit OF PROJECT XPKit WITH CONFIGURATION Release ===<br>Check dependencies<br>No architectures to compile for (ARCHS=x86_64 i386, VALID_ARCHS=arm64 armv7 armv7s).<br><strong> BUILD FAILED </strong><br>分析一下，这里都是我们提到过的指令集。 VALID_ARCHS=arm64 armv7 armv7s 这就是我们开始在 Build Setting -&gt;Valid Architectures 中设置的内容，很明显，意思是脚本里，要制作包含 x86_64 和 i386的包，但是我们的Valid Architectures 中没有。<br>那么解决问题就方便了，分别添加x86_64 和 i386<br>出错: iOS 13 does not support 32-bit programs<br>解决:把编译选项里的 Build Active Architecture Only 设为 No, 同时将 Valid Architectures 只设为 arm64,arm64e,x86_64,将arm7,arm7s删掉,同时将上面的编译脚本中的arm7,arm7s也要删掉<br>编译成功~<br>来到桌面我们发现XPKit.framework，已经静悄悄的在桌面上了，这就是我们的通用包</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h4><p><a href="https://www.jianshu.com/p/1ad5bede88bd" target="_blank" rel="noopener">https://www.jianshu.com/p/1ad5bede88bd</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foolsparadise.cn/2020/bc0a9335c27/2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包/" data-id="ck6spmyc3001udmn1d0cp7508" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2020/">2020</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Framework/">Framework</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swift/">swift</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/bc0a9335c27/2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/bc0a9335c27/2020-01-03-howto地理文件gpx文件修改/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2020-01-03-howto地理文件gpx文件修改</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+  <! -- 添加版权信息 -->
+<div class="article-footer-copyright">
+<center>本文由 <b><a href="/about" target="_blank" title="foolsparadise">foolsparadise</a></b> 创作和发表，采用 <b>GPL-2.0</b> 国际许可协议进行许可</center>
+
+<center>本文作者为 <b><a href="/about" target="_blank" title="foolsparadise">foolsparadise</a></b> 转载请注明作者及出处</center>
+
+<center>本文标题为 <b><a href="/2020/bc0a9335c27/2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包/" target="_blank" title="2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包">2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包</a></b></center>
+
+<center>本文链接为 <b><a href="/2020/bc0a9335c27/2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包/" target="_blank" title="2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包">https://foolsparadise.cn/2020/bc0a9335c27/2020-02-08-howto如何创建使用iOS的swift语言Framework及边改target边调App及使用Aggregate一次性编译真机和模拟器通用Framework包/</a></b>.</center>
+</div>
+<! -- 添加版权信息 -->
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2011/" style="font-size: 10px;">2011</a> <a href="/tags/2017/" style="font-size: 10px;">2017</a> <a href="/tags/2018/" style="font-size: 18.33px;">2018</a> <a href="/tags/2019/" style="font-size: 20px;">2019</a> <a href="/tags/2020/" style="font-size: 16.67px;">2020</a> <a href="/tags/AFNetworking-SecurityPolicy/" style="font-size: 10px;">AFNetworking SecurityPolicy</a> <a href="/tags/Apple公司/" style="font-size: 10px;">Apple公司</a> <a href="/tags/Block-user/" style="font-size: 10px;">Block user</a> <a href="/tags/CD/" style="font-size: 10px;">CD</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Continuous-Delivery/" style="font-size: 10px;">Continuous Delivery</a> <a href="/tags/Continuous-Deployment/" style="font-size: 10px;">Continuous Deployment</a> <a href="/tags/Continuous-Integration/" style="font-size: 10px;">Continuous Integration</a> <a href="/tags/CoreBluetooth/" style="font-size: 10px;">CoreBluetooth</a> <a href="/tags/CoreData/" style="font-size: 10px;">CoreData</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/DS-Store/" style="font-size: 10px;">DS_Store</a> <a href="/tags/Demo/" style="font-size: 15px;">Demo</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/EDGE浏览器/" style="font-size: 10px;">EDGE浏览器</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/Fiddler/" style="font-size: 10px;">Fiddler</a> <a href="/tags/Framework/" style="font-size: 11.67px;">Framework</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IE浏览器/" style="font-size: 10px;">IE浏览器</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 11.67px;">Markdown</a> <a href="/tags/NTFS/" style="font-size: 10px;">NTFS</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Scrapy/" style="font-size: 11.67px;">Scrapy</a> <a href="/tags/TLS/" style="font-size: 10px;">TLS</a> <a href="/tags/Tesseract/" style="font-size: 10px;">Tesseract</a> <a href="/tags/WWDC/" style="font-size: 10px;">WWDC</a> <a href="/tags/Windows10/" style="font-size: 11.67px;">Windows10</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/cross-platform/" style="font-size: 10px;">cross platform</a> <a href="/tags/crypt/" style="font-size: 10px;">crypt</a> <a href="/tags/decrypt/" style="font-size: 10px;">decrypt</a> <a href="/tags/domain/" style="font-size: 11.67px;">domain</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/exif/" style="font-size: 10px;">exif</a> <a href="/tags/fastlane/" style="font-size: 10px;">fastlane</a> <a href="/tags/fork/" style="font-size: 10px;">fork</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 11.67px;">github</a> <a href="/tags/gpx文件/" style="font-size: 10px;">gpx文件</a> <a href="/tags/howto/" style="font-size: 10px;">howto</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pdf/" style="font-size: 11.67px;">pdf</a> <a href="/tags/pyenv/" style="font-size: 11.67px;">pyenv</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/swift/" style="font-size: 11.67px;">swift</a> <a href="/tags/sync/" style="font-size: 10px;">sync</a> <a href="/tags/timeout/" style="font-size: 10px;">timeout</a> <a href="/tags/udp/" style="font-size: 10px;">udp</a> <a href="/tags/出版社2020年春季学期使用教科书/" style="font-size: 10px;">出版社2020年春季学期使用教科书</a> <a href="/tags/前端/" style="font-size: 11.67px;">前端</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/图片/" style="font-size: 11.67px;">图片</a> <a href="/tags/地理/" style="font-size: 10px;">地理</a> <a href="/tags/域名/" style="font-size: 11.67px;">域名</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/抓包/" style="font-size: 10px;">抓包</a> <a href="/tags/拉黑/" style="font-size: 10px;">拉黑</a> <a href="/tags/持续交付/" style="font-size: 10px;">持续交付</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/文件格式转换/" style="font-size: 11.67px;">文件格式转换</a> <a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a> <a href="/tags/版权插件/" style="font-size: 10px;">版权插件</a> <a href="/tags/网络打印机/" style="font-size: 10px;">网络打印机</a> <a href="/tags/蓝牙/" style="font-size: 10px;">蓝牙</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/评论插件/" style="font-size: 10px;">评论插件</a> <a href="/tags/跨平台/" style="font-size: 10px;">跨平台</a> <a href="/tags/转发/" style="font-size: 10px;">转发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/bc0a9335c27/2099-06-01-myDomain闲置域名转让/">闲置域名转让</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-17-Demo之iOS使用CoreData/">2020-02-17-Demo之iOS使用CoreData</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-15-AFNetworking添加SecurityPolicy解决上传文件时https请求Status Code 200(正常)Request failed unacceptable content-type问题/">2020-02-15-AFNetworking添加SecurityPolicy解决上传文件时https请求Status Code 200(正常)Request failed unacceptable content-type问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-13-Scrapy爬虫Demo_抓取出版社2020年春季学期使用教科书/">2020-02-13-Scrapy爬虫Demo_抓取出版社2020年春季学期使用教科书</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App/">2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011-2020 foolsparadise<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <div style="display:none">
+      <!-- 统计代码 -->
+      <br>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277988423'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1277988423%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+      <!-- 统计代码 -->
+      <br>
+      <script type="text/javascript" src="https://js.users.51.la/20311135.js"></script>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/aboutme" class="mobile-nav-link">About关于本站</a>
+  
+</nav>
+    
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

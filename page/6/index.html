@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>foolsparadise虚拟世界愚者乐园!天堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=62605983" charset="UTF-8"></script> -->
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">foolsparadise虚拟世界愚者乐园!天堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/aboutme">About关于本站</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://foolsparadise.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2018-08-08-Scrapy爬虫Demo_抓取网页中的图片" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/bc0a9335c27/2018-08-08-Scrapy爬虫Demo_抓取网页中的图片/" class="article-date">
+  <time datetime="2018-08-08T05:18:19.000Z" itemprop="datePublished">2018-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/bc0a9335c27/2018-08-08-Scrapy爬虫Demo_抓取网页中的图片/">2018-08-08-Scrapy爬虫Demo_抓取网页中的图片</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Scrapy介绍"><a href="#Scrapy介绍" class="headerlink" title="Scrapy介绍"></a>Scrapy介绍</h2><p>Scrapy is an application framework for crawling web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.</p>
+<h2 id="Scrapy安装"><a href="#Scrapy安装" class="headerlink" title="Scrapy安装"></a>Scrapy安装</h2><p><a href="https://doc.scrapy.org/en/latest/intro/overview.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/intro/overview.html</a></p>
+<h2 id="创建并修改爬虫"><a href="#创建并修改爬虫" class="headerlink" title="创建并修改爬虫"></a>创建并修改爬虫</h2><p>下载Scrapy官方的Demo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/scrapy/quotesbot</span><br><span class="line">$ cd quotesbot</span><br></pre></td></tr></table></figure></p>
+<p>修改 quotesbot/spiders/toscrape-css.py 文件内空，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"># Usage 使用方法: scrapy crawl toscrape-css -o xxx.csv</span><br><span class="line"># //img//@data-src&apos; 图片类似于这样的 &lt;img data-src=&apos;http://xxxx/images/2018.jpg&apos;&gt; in start_urls</span><br><span class="line"># //input//@data-src&apos; 图片类似于这样的 &lt;input data-src=&apos;http://xxxx/images/2018.jpg&apos; type=&apos;image&apos;&gt; in start_urls</span><br><span class="line"># 因为考虑反爬虫的问题，建议URL地址已抓出来后，直接将所有地址放到迅雷里打包下载</span><br><span class="line">import scrapy</span><br><span class="line">import os</span><br><span class="line">import urllib</span><br><span class="line"></span><br><span class="line">class ToScrapeCSSSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;toscrape-css&quot;</span><br><span class="line">    start_urls = [</span><br><span class="line">        &apos;https://xxx/htm_data/x/2018/xxxxxx.html&apos;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        for quote in response.xpath(&apos;//input//@data-src&apos;).extract():</span><br><span class="line">            print quote</span><br><span class="line"></span><br><span class="line">            # 加 -o 参数时导出到文件时，会用到</span><br><span class="line">            # yield &#123;</span><br><span class="line">            #     &apos;url&apos; : quote</span><br><span class="line">            # &#125;</span><br><span class="line"></span><br><span class="line">            # （直接下载图片到当前目录中，反爬严格的，可能会无法下载下来）</span><br><span class="line">            #  因为考虑反爬虫的问题，建议URL地址已抓出来后，直接将所有地址放到迅雷里打包下载</span><br><span class="line">            # if quote:</span><br><span class="line">            #     filename = os.path.basename(quote)</span><br><span class="line">            #     print filename</span><br><span class="line">            #     filepath=os.path.join(&quot;/Users/xxx/Desktop&quot;,filename)</span><br><span class="line">            #     urllib.urlretrieve(quote,filepath)</span><br><span class="line"></span><br><span class="line">            # 这个注释掉，需要时再用</span><br><span class="line">            # yield scrapy.Request(quote)</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>Usage 使用方法: scrapy crawl toscrape-css -o xxx.csv</p>
+<h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><p>1, 因为考虑反爬虫的问题，建议URL地址已抓出来后，直接将所有地址放到迅雷里打包下载<br>2, Scrapy爬虫出现Forbidden by robots.txt<br>关闭scrapy自带的ROBOTSTXT_OBEY功能，在setting找到这个变量，设置为False即可解决<br>ROBOTSTXT_OBEY = False</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foolsparadise.cn/2018/bc0a9335c27/2018-08-08-Scrapy爬虫Demo_抓取网页中的图片/" data-id="ck028scc2000jkm535ox4iuul" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2018/">2018</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Demo/">Demo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapy/">Scrapy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-2018-07-20-Python第三方库Django学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/bc0a9335c27/2018-07-20-Python第三方库Django学习/" class="article-date">
+  <time datetime="2018-07-20T03:18:19.000Z" itemprop="datePublished">2018-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/bc0a9335c27/2018-07-20-Python第三方库Django学习/">2018-07-20-Python第三方库Django学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Django 是 Python Web 框架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Django是一个开放源代码的Web应用框架，由Python写成。采用了MVC的框架模式，即模型M，视图V和控制器C。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。并于2005年7月在BSD许可证下发布。  </span><br><span class="line">Django 项目是一个Python定制框架，它源自一个在线新闻 Web 站点，于 2005 年以开源的形式被释放出来。Django 框架的核心组件有：  </span><br><span class="line">用于创建模型的对象关系映射  </span><br><span class="line">为最终用户设计的完美管理界面  </span><br><span class="line">一流的 URL 设计  </span><br><span class="line">设计者友好的模板语言  </span><br><span class="line">缓存系统。  </span><br><span class="line">Django(发音：[`dʒæŋɡəʊ]) 是用python语言写的开源web开发框架(open source web framework)，它鼓励快速开发,并遵循MVC设计。  </span><br><span class="line">2005年7月, 并于2008年9月发布了第一个正式版本1.0 。  </span><br><span class="line">Django 根据比利时的爵士音乐家Django Reinhardt命名，他是一个吉普赛人，主要以演奏吉它为主，还演奏过小提琴等。  </span><br><span class="line">由于Django在近年来的迅速发展，应用越来越广泛，被著名IT开发杂志SD Times评选为2013 SD Times 100，位列“API、库和框架”分类第6位，被认为是该领域的佼佼者 [1]  。</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>官网：<a href="https://docs.djangoproject.com/en/2.0/topics/install/#installing-official-release" target="_blank" rel="noopener">https://docs.djangoproject.com/en/2.0/topics/install/#installing-official-release</a><br>同时也可以参考第三方的安装教程：<a href="http://www.runoob.com/django/django-install.html" target="_blank" rel="noopener">http://www.runoob.com/django/django-install.html</a><br>(以下为我在Mac系统上的安装过程)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install msgpack #安装依赖库</span><br><span class="line">pip install Django #安装</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用Demo"><a href="#使用Demo" class="headerlink" title="使用Demo"></a>使用Demo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ django-admin.py startproject testdj</span><br><span class="line">$ cd testdj #切换到我们创建的项目</span><br><span class="line">$ python manage.py runserver</span><br><span class="line">Starting development server at http://127.0.0.1:8000/</span><br><span class="line">Quit the server with CONTROL-C.</span><br><span class="line">项目已启动，访问地址为http://127.0.0.1:8000/</span><br></pre></td></tr></table></figure>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>参考N多网上文章教程，<br>教程：<a href="http://www.runoob.com/django/django-tutorial.html" target="_blank" rel="noopener">http://www.runoob.com/django/django-tutorial.html</a><br>很好的一个教程：<a href="https://www.cnblogs.com/feixuelove1009/p/5823135.html" target="_blank" rel="noopener">https://www.cnblogs.com/feixuelove1009/p/5823135.html</a><br>其它：搜索  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foolsparadise.cn/2018/bc0a9335c27/2018-07-20-Python第三方库Django学习/" data-id="ck028scbv000akm53jwdardjx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2018/">2018</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-2018-07-19-Hexo添加评论,版权等插件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/bc0a9335c27/2018-07-19-Hexo添加评论,版权等插件/" class="article-date">
+  <time datetime="2018-07-19T07:16:44.000Z" itemprop="datePublished">2018-07-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/bc0a9335c27/2018-07-19-Hexo添加评论,版权等插件/">2018-07-19-Hexo添加评论,版权等插件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="评论插件"><a href="#评论插件" class="headerlink" title="评论插件"></a>评论插件</h2><p>(查看网页源代码，疑似会暴露 GitHub Application 的 clientID 和 clientSecret ， 我就暂时没有添加此插件，以下评论插件仅供参考)<br>参考博主的意见：<br>gitment ( <a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">https://github.com/imsun/gitment</a> )<br>gitalk ( <a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">https://github.com/gitalk/gitalk</a> )<br><a href="https://oliverqueen.cn/2018/02/11/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">https://oliverqueen.cn/2018/02/11/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/</a><br>畅言<br>等等，可自已看看效果比较  </p>
+<h2 id="版权插件"><a href="#版权插件" class="headerlink" title="版权插件"></a>版权插件</h2><p>参考博主的意见：<br><a href="https://blog.csdn.net/peihaozhu/article/details/51051149" target="_blank" rel="noopener">https://blog.csdn.net/peihaozhu/article/details/51051149</a><br>以及<br><a href="https://oliverqueen.cn/2018/02/11/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">https://oliverqueen.cn/2018/02/11/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/</a><br>以及<br><a href="https://www.jianshu.com/p/bb5eaee1f4dd" target="_blank" rel="noopener">https://www.jianshu.com/p/bb5eaee1f4dd</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foolsparadise.cn/2018/bc0a9335c27/2018-07-19-Hexo添加评论,版权等插件/" data-id="ck028scbs0008km53wczge5ki" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2018/">2018</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/插件/">插件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/版权插件/">版权插件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/评论插件/">评论插件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-2018-07-18-c++设计模式-observer（观察者模式）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/bc0a9335c27/2018-07-18-c++设计模式-observer（观察者模式）/" class="article-date">
+  <time datetime="2018-07-18T03:16:45.000Z" itemprop="datePublished">2018-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/bc0a9335c27/2018-07-18-c++设计模式-observer（观察者模式）/">2018-07-18-c++设计模式-observer（观察者模式）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="c-设计模式-observer（观察者模式）"><a href="#c-设计模式-observer（观察者模式）" class="headerlink" title="c++设计模式-observer（观察者模式）"></a>c++设计模式-observer（观察者模式）</h2><p>copy from <a href="https://blog.csdn.net/chenxun_2010/article/details/48772559" target="_blank" rel="noopener">https://blog.csdn.net/chenxun_2010/article/details/48772559</a></p>
+<p>图：<br>定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时, 所有依赖于它的对象都得到通知并被自动更新。<br>适用性：<br>当一个抽象模型有两个方面, 其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。<br>当对一个对象的改变需要同时改变其它对象, 而不知道具体有多少对象有待改变。<br>当一个对象必须通知其它对象，而它又不能假定其它对象是谁。换言之, 你不希望这些对象是紧密耦合的<br>clip_image020我们来举一个博客的例子，博主写好了一篇博文，发布之后有两个读者在阅读博文，当博主发现一些博文需要修改，修改之后重新发布，那么正在阅读的两个读者应该都能都到通知多好！下面就按照上面uml图来实现这样的一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">class Observer</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Observer()&#123;&#125;</span><br><span class="line">	virtual ~Observer()&#123;&#125;</span><br><span class="line">	virtual void Update()&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Blog</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Blog()&#123;&#125;</span><br><span class="line">	virtual ~Blog()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	void Attach(Observer* observer)</span><br><span class="line">	&#123;</span><br><span class="line">		vec_observer.push_back(observer);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	void Romve(Observer* observer)</span><br><span class="line">	&#123;</span><br><span class="line">		vector&lt;Observer*&gt;::iterator iter;</span><br><span class="line">		for (iter = vec_observer.begin(); iter != vec_observer.end(); ++iter)</span><br><span class="line">		&#123;</span><br><span class="line">			if ((*iter) == observer)</span><br><span class="line">				vec_observer.erase(iter);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	void Notify()</span><br><span class="line">	&#123;</span><br><span class="line">		vector&lt;Observer*&gt;::iterator iter;</span><br><span class="line">		for (iter = vec_observer.begin(); iter != vec_observer.end(); ++iter)</span><br><span class="line">		&#123;</span><br><span class="line">			(*iter)-&gt;Update();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	virtual void SetStatus(string sts)&#123;&#125;</span><br><span class="line">	virtual string GetStatus() &#123; return m_status; &#125;;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">	vector&lt;Observer*&gt; vec_observer;</span><br><span class="line">protected:</span><br><span class="line">	string m_status;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class ConcreteBlog :public Blog</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	ConcreteBlog(string name):m_blog_name(name)&#123;&#125;</span><br><span class="line">	~ConcreteBlog()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	void SetStatus(string sts)</span><br><span class="line">	&#123;</span><br><span class="line">		m_status = &quot;csdn通知： &quot; + m_blog_name + sts;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	string GetStatus()</span><br><span class="line">	&#123;</span><br><span class="line">		return m_status;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">	string m_blog_name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class ConcreteObserver :public Observer</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">	string m_observer_name;</span><br><span class="line">	Blog *m_blog;</span><br><span class="line">public:</span><br><span class="line">	ConcreteObserver(string name, Blog* blog) :m_observer_name(name), m_blog(blog)&#123;&#125;</span><br><span class="line">	~ConcreteObserver()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	void Update()</span><br><span class="line">	&#123;</span><br><span class="line">		string status = m_blog-&gt;GetStatus();</span><br><span class="line">		cout &lt;&lt; m_observer_name &lt;&lt; &quot;-----------&quot; &lt;&lt; status &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	Blog *blog = new ConcreteBlog(&quot;chenxun&quot;);</span><br><span class="line">	Observer *ob1 = new ConcreteObserver(&quot;xiaowang&quot;, blog);</span><br><span class="line">	Observer *ob2 = new ConcreteObserver(&quot;xiaozhang&quot;, blog);</span><br><span class="line">	blog-&gt;Attach(ob1);</span><br><span class="line">	blog-&gt;Attach(ob2);</span><br><span class="line">	blog-&gt;SetStatus(&quot;发表了新博客&quot;);</span><br><span class="line">	blog-&gt;Notify();</span><br><span class="line"></span><br><span class="line">	delete blog;</span><br><span class="line">	delete ob1;</span><br><span class="line">	delete ob2;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foolsparadise.cn/2018/bc0a9335c27/2018-07-18-c++设计模式-observer（观察者模式）/" data-id="ck028scbo0004km53u0jp6lep" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2018/">2018</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转发/">转发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-2018-07-18-多版本Python的使用和切换，anaconda和pyenv的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/bc0a9335c27/2018-07-18-多版本Python的使用和切换，anaconda和pyenv的使用/" class="article-date">
+  <time datetime="2018-07-18T03:16:44.000Z" itemprop="datePublished">2018-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/bc0a9335c27/2018-07-18-多版本Python的使用和切换，anaconda和pyenv的使用/">2018-07-18-多版本Python的使用和切换，anaconda和pyenv的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="多版本Python的使用和切换，anaconda和pyenv的使用"><a href="#多版本Python的使用和切换，anaconda和pyenv的使用" class="headerlink" title="多版本Python的使用和切换，anaconda和pyenv的使用"></a>多版本Python的使用和切换，anaconda和pyenv的使用</h2><p>建议使用Anaconda，因为有UI界面，点点鼠标就切换完成了。<br>pyenv,使用的是命令行切换不同的Python版本。<br>另外：Anaconda开源，同时也是专注于数据分析的Python发行版本，包含了conda、Python等190多个科学包及其依赖项。适用于企业级大数据分析的Python工具。其包含了720多个数据科学相关的开源包，在数据可视化、机器学习、深度学习等多方面都有涉及。不仅可以做数据分析，甚至可以用在大数据和人工智能领域。参考这个 <a href="https://www.jianshu.com/p/169403f7e40c" target="_blank" rel="noopener">https://www.jianshu.com/p/169403f7e40c</a><br>以下为Mac系统下我的使用，其它系统我无法确认，你也可以做参考<br>两个貌似有点冲突，注意使用  </p>
+<h4 id="安装并使用-Anaconda"><a href="#安装并使用-Anaconda" class="headerlink" title="安装并使用 Anaconda"></a>安装并使用 Anaconda</h4><p>下载地址，去下载，然后安装 <a href="https://www.anaconda.com/download/#macos" target="_blank" rel="noopener">https://www.anaconda.com/download/#macos</a><br>下载pkg或dmg文件，安装完成<br>一方法有UI的App，安装完后在Mac系统中已安装软件，点击启动运行，然后再点点鼠标就切换完成，（另，如遇到问题，记得右键使用sudo管理员权限运行即可）<br>另一方法，使用命令行来完成切换，命令如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">python --version  </span><br><span class="line">conda create -n python2 python=2 anaconda  </span><br><span class="line">ls -la /anaconda3/bin/activate  </span><br><span class="line">sudo chmod +x /anaconda3/bin/*  </span><br><span class="line"># To activate this environment, use:  </span><br><span class="line"># &gt; source activate python2  </span><br><span class="line">#  </span><br><span class="line"># To deactivate an active environment, use:  </span><br><span class="line"># &gt; source deactivate  </span><br><span class="line">(以上方法不行，用下边这方法)  </span><br><span class="line">activate python2 #换成2.7版本  </span><br><span class="line">python --version  </span><br><span class="line">deactivate python2 #换成默认的3.6版本  </span><br><span class="line">python --version</span><br></pre></td></tr></table></figure></p>
+<h4 id="安装pyenv"><a href="#安装pyenv" class="headerlink" title="安装pyenv"></a>安装pyenv</h4><p>Mac下先安装Homebrew<br>/usr/bin/ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a><br>然后安装pyenv<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">brew install pyenv  </span><br><span class="line">brew -v  </span><br><span class="line">pyenv install --list #会列出可安装的Python版本号  </span><br><span class="line">#安装对应的Python版本，可以安装多个版本，比如:  </span><br><span class="line">pyenv install 2.7.10  </span><br><span class="line">pyenv install 3.6.5</span><br></pre></td></tr></table></figure></p>
+<p>安装可能会有卡顿，等一等再试<br>安装后查看版本pyenv versions及当前用的版本pyenv version<br>设置全局版本pyenv global 3.6.5 不建议如此操作，可能会导致部分系统程序无法正常工作<br>可以试试，指定目录切换指定版本的Python，如：pyenv local 3.5.1<br>pyenv rehash   # 更新本地数据库<br>另外pyenv的global，shell，local的使用　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">~ pyenv versions</span><br><span class="line">system (set by /home/wang/.pyenv/version)</span><br><span class="line">  3.3.1</span><br><span class="line">~ python --version</span><br><span class="line">Python 2.7.6</span><br><span class="line">~ pyenv global 3.3.1     # 更改本机版本，重启不会造成再次更改</span><br><span class="line">~ python --version</span><br><span class="line">Python 3.3.1</span><br><span class="line">~ pyenv local system    #  更改本地的版本，只是临时生效，重启什么的会恢复系统版本</span><br><span class="line">~ python --version</span><br><span class="line">Python 2.7.6</span><br><span class="line">~ python shell 3.3.1   #  更改本shell的版本，临时生效，优先级高于global，local的也高于global，都是临时生效</span><br><span class="line">python: can&apos;t open file &apos;shell&apos;: [Errno 2] No such file or directory</span><br><span class="line">~ pyenv shell 3.3.1</span><br><span class="line">~ pyenv versions</span><br><span class="line">  system</span><br><span class="line">3.3.1 (set by PYENV_VERSION environment variable)</span><br><span class="line">~ python</span><br><span class="line">Python 3.3.1 (default, May  8 2016, 21:27:17)</span><br><span class="line">[GCC 4.8.4] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br></pre></td></tr></table></figure></p>
+<h3 id="个人推荐使用Anaconda"><a href="#个人推荐使用Anaconda" class="headerlink" title="个人推荐使用Anaconda"></a>个人推荐使用Anaconda</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foolsparadise.cn/2018/bc0a9335c27/2018-07-18-多版本Python的使用和切换，anaconda和pyenv的使用/" data-id="ck028scbu0009km53dyvx81hs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2018/">2018</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/anaconda/">anaconda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyenv/">pyenv</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2011/" style="font-size: 10px;">2011</a> <a href="/tags/2017/" style="font-size: 10px;">2017</a> <a href="/tags/2018/" style="font-size: 18.33px;">2018</a> <a href="/tags/2019/" style="font-size: 20px;">2019</a> <a href="/tags/2020/" style="font-size: 16.67px;">2020</a> <a href="/tags/AFNetworking-SecurityPolicy/" style="font-size: 10px;">AFNetworking SecurityPolicy</a> <a href="/tags/Apple公司/" style="font-size: 10px;">Apple公司</a> <a href="/tags/Block-user/" style="font-size: 10px;">Block user</a> <a href="/tags/CD/" style="font-size: 10px;">CD</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Continuous-Delivery/" style="font-size: 10px;">Continuous Delivery</a> <a href="/tags/Continuous-Deployment/" style="font-size: 10px;">Continuous Deployment</a> <a href="/tags/Continuous-Integration/" style="font-size: 10px;">Continuous Integration</a> <a href="/tags/CoreBluetooth/" style="font-size: 10px;">CoreBluetooth</a> <a href="/tags/CoreData/" style="font-size: 10px;">CoreData</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/DS-Store/" style="font-size: 10px;">DS_Store</a> <a href="/tags/Demo/" style="font-size: 15px;">Demo</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/EDGE浏览器/" style="font-size: 10px;">EDGE浏览器</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/Fiddler/" style="font-size: 10px;">Fiddler</a> <a href="/tags/Framework/" style="font-size: 11.67px;">Framework</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IE浏览器/" style="font-size: 10px;">IE浏览器</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 11.67px;">Markdown</a> <a href="/tags/NTFS/" style="font-size: 10px;">NTFS</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Scrapy/" style="font-size: 11.67px;">Scrapy</a> <a href="/tags/TLS/" style="font-size: 10px;">TLS</a> <a href="/tags/Tesseract/" style="font-size: 10px;">Tesseract</a> <a href="/tags/WWDC/" style="font-size: 10px;">WWDC</a> <a href="/tags/Windows10/" style="font-size: 11.67px;">Windows10</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/cross-platform/" style="font-size: 10px;">cross platform</a> <a href="/tags/crypt/" style="font-size: 10px;">crypt</a> <a href="/tags/decrypt/" style="font-size: 10px;">decrypt</a> <a href="/tags/domain/" style="font-size: 11.67px;">domain</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/exif/" style="font-size: 10px;">exif</a> <a href="/tags/fastlane/" style="font-size: 10px;">fastlane</a> <a href="/tags/fork/" style="font-size: 10px;">fork</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 11.67px;">github</a> <a href="/tags/gpx文件/" style="font-size: 10px;">gpx文件</a> <a href="/tags/howto/" style="font-size: 10px;">howto</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pdf/" style="font-size: 11.67px;">pdf</a> <a href="/tags/pyenv/" style="font-size: 11.67px;">pyenv</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/swift/" style="font-size: 11.67px;">swift</a> <a href="/tags/sync/" style="font-size: 10px;">sync</a> <a href="/tags/timeout/" style="font-size: 10px;">timeout</a> <a href="/tags/udp/" style="font-size: 10px;">udp</a> <a href="/tags/出版社2020年春季学期使用教科书/" style="font-size: 10px;">出版社2020年春季学期使用教科书</a> <a href="/tags/前端/" style="font-size: 11.67px;">前端</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/图片/" style="font-size: 11.67px;">图片</a> <a href="/tags/地理/" style="font-size: 10px;">地理</a> <a href="/tags/域名/" style="font-size: 11.67px;">域名</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/抓包/" style="font-size: 10px;">抓包</a> <a href="/tags/拉黑/" style="font-size: 10px;">拉黑</a> <a href="/tags/持续交付/" style="font-size: 10px;">持续交付</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/文件格式转换/" style="font-size: 11.67px;">文件格式转换</a> <a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a> <a href="/tags/版权插件/" style="font-size: 10px;">版权插件</a> <a href="/tags/网络打印机/" style="font-size: 10px;">网络打印机</a> <a href="/tags/蓝牙/" style="font-size: 10px;">蓝牙</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/评论插件/" style="font-size: 10px;">评论插件</a> <a href="/tags/跨平台/" style="font-size: 10px;">跨平台</a> <a href="/tags/转发/" style="font-size: 10px;">转发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/bc0a9335c27/2099-06-01-myDomain闲置域名转让/">闲置域名转让</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-17-Demo之iOS使用CoreData/">2020-02-17-Demo之iOS使用CoreData</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-15-AFNetworking添加SecurityPolicy解决上传文件时https请求Status Code 200(正常)Request failed unacceptable content-type问题/">2020-02-15-AFNetworking添加SecurityPolicy解决上传文件时https请求Status Code 200(正常)Request failed unacceptable content-type问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-13-Scrapy爬虫Demo_抓取出版社2020年春季学期使用教科书/">2020-02-13-Scrapy爬虫Demo_抓取出版社2020年春季学期使用教科书</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App/">2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011-2020 foolsparadise<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <div style="display:none">
+      <!-- 统计代码 -->
+      <br>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277988423'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1277988423%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+      <!-- 统计代码 -->
+      <br>
+      <script type="text/javascript" src="https://js.users.51.la/20311135.js"></script>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/aboutme" class="mobile-nav-link">About关于本站</a>
+  
+</nav>
+    
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
