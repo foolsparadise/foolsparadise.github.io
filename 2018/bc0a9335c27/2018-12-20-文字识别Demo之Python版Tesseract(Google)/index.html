@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2018-12-20-文字识别Demo之Python版Tesseract(Google) | foolsparadise虚拟世界愚者乐园!天堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=62605983" charset="UTF-8"></script> -->
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">foolsparadise虚拟世界愚者乐园!天堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/aboutme">About关于本站</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://foolsparadise.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2018-12-20-文字识别Demo之Python版Tesseract(Google)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/bc0a9335c27/2018-12-20-文字识别Demo之Python版Tesseract(Google)/" class="article-date">
+  <time datetime="2018-12-20T10:18:19.000Z" itemprop="datePublished">2018-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2018-12-20-文字识别Demo之Python版Tesseract(Google)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="文字识别Demo之Python版Tesseract-Google"><a href="#文字识别Demo之Python版Tesseract-Google" class="headerlink" title="文字识别Demo之Python版Tesseract(Google)"></a>文字识别Demo之Python版Tesseract(Google)</h2><h2 id="安装-Mac系统环境"><a href="#安装-Mac系统环境" class="headerlink" title="安装(Mac系统环境)"></a>安装(Mac系统环境)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install tesseract</span><br><span class="line">brew list tesseract</span><br></pre></td></tr></table></figure>
+<p>安装tesseract，并打印<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/Cellar/tesseract/4.0.0/bin/tesseract</span><br><span class="line">/usr/local/Cellar/tesseract/4.0.0/include/tesseract/ (20 files)</span><br><span class="line">/usr/local/Cellar/tesseract/4.0.0/lib/libtesseract.4.dylib</span><br><span class="line">/usr/local/Cellar/tesseract/4.0.0/lib/pkgconfig/tesseract.pc</span><br><span class="line">/usr/local/Cellar/tesseract/4.0.0/lib/ (2 other files)</span><br><span class="line">/usr/local/Cellar/tesseract/4.0.0/share/tessdata/ (32 files)</span><br></pre></td></tr></table></figure></p>
+<p>在 <a href="https://github.com/tesseract-ocr/tessdata" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tessdata</a> 下载语言包，比如简体中文，就是文件 chi_sim_vert.traineddata 和 chi_sim.traineddata， 复制到 /usr/local/Cellar/tesseract/4.0.0/share/tessdata/ 目录下<br>然后安装pytesseract<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Installing via pip:</span><br><span class="line">Check the pytesseract package page for more information.</span><br><span class="line">$ (env)&gt; pip install pytesseract</span><br><span class="line">Or if you have git installed:</span><br><span class="line">$ (env)&gt; pip install -U git+https://github.com/madmaze/pytesseract.git</span><br><span class="line">Installing from source:</span><br><span class="line">$&gt; git clone https://github.com/madmaze/pytesseract.git</span><br><span class="line">$ (env)&gt; cd pytesseract &amp;&amp; pip install -U .</span><br></pre></td></tr></table></figure></p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python pytesseractDemo.py</span><br></pre></td></tr></table></figure>
+<h2 id="pytesseractDemo-py代码"><a href="#pytesseractDemo-py代码" class="headerlink" title="pytesseractDemo.py代码"></a>pytesseractDemo.py代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line"># @Author  : github.com/foolsparadise</span><br><span class="line"># @Time    : 2018-12-20 18:18:19 </span><br><span class="line"># @desc    : </span><br><span class="line"># @usage   : python pytesseractDemo.py</span><br><span class="line"></span><br><span class="line">from PIL import Image</span><br><span class="line">import os</span><br><span class="line">import pytesseract</span><br><span class="line"># tesseract/4.0.0</span><br><span class="line"># https://github.com/tesseract-ocr/tesseract/wiki</span><br><span class="line"># https://github.com/tesseract-ocr/tessdata</span><br><span class="line"># https://github.com/madmaze/pytesseract</span><br><span class="line"></span><br><span class="line"># 图片</span><br><span class="line">img = Image.open(&quot;./screenshot.png&quot;)</span><br><span class="line"># 识别范围</span><br><span class="line">question = img.crop((0, 0, 600, 400))</span><br><span class="line"># tesseract 路径</span><br><span class="line">pytesseract.pytesseract.tesseract_cmd = &apos;/usr/local/Cellar/tesseract/4.0.0/bin/tesseract&apos;</span><br><span class="line"># 语言包目录</span><br><span class="line">tessdata_dir_config = &apos;--tessdata-dir &quot;/usr/local/Cellar/tesseract/4.0.0/share/tessdata&quot;&apos;</span><br><span class="line"># lang 指定中文简体</span><br><span class="line">text = pytesseract.image_to_string(question, lang=&apos;chi_sim&apos;, config=tessdata_dir_config)</span><br><span class="line">text = text.replace(&quot; &quot;, &quot;&quot;)[2:]</span><br><span class="line"># 打印</span><br><span class="line">print(text)</span><br></pre></td></tr></table></figure>
+<h2 id="MIT"><a href="#MIT" class="headerlink" title="MIT"></a>MIT</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">代码在我的github项目</span><br><span class="line">https://github.com/foolsparadise/pytesseractDemo.python</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foolsparadise.cn/2018/bc0a9335c27/2018-12-20-文字识别Demo之Python版Tesseract(Google)/" data-id="ck028scc1000hkm5311174rbx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2018/">2018</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tesseract/">Tesseract</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/bc0a9335c27/2019-03-30-howto如何同步已fork的github工程到最新/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2019-03-30-howto如何同步已fork的github工程到最新
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/bc0a9335c27/2018-12-18-解决Mac不能读取写入NTFS格式磁盘问题(只命令行免安装)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2018-12-18-解决Mac不能读取写入NTFS格式磁盘问题(只命令行免安装)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+  <! -- 添加版权信息 -->
+<div class="article-footer-copyright">
+<center>本文由 <b><a href="/about" target="_blank" title="foolsparadise">foolsparadise</a></b> 创作和发表，采用 <b>GPL-2.0</b> 国际许可协议进行许可</center>
+
+<center>本文作者为 <b><a href="/about" target="_blank" title="foolsparadise">foolsparadise</a></b> 转载请注明作者及出处</center>
+
+<center>本文标题为 <b><a href="/2018/bc0a9335c27/2018-12-20-文字识别Demo之Python版Tesseract(Google)/" target="_blank" title="2018-12-20-文字识别Demo之Python版Tesseract(Google)">2018-12-20-文字识别Demo之Python版Tesseract(Google)</a></b></center>
+
+<center>本文链接为 <b><a href="/2018/bc0a9335c27/2018-12-20-文字识别Demo之Python版Tesseract(Google)/" target="_blank" title="2018-12-20-文字识别Demo之Python版Tesseract(Google)">https://foolsparadise.cn/2018/bc0a9335c27/2018-12-20-文字识别Demo之Python版Tesseract(Google)/</a></b>.</center>
+</div>
+<! -- 添加版权信息 -->
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2011/" style="font-size: 10px;">2011</a> <a href="/tags/2017/" style="font-size: 10px;">2017</a> <a href="/tags/2018/" style="font-size: 18.33px;">2018</a> <a href="/tags/2019/" style="font-size: 20px;">2019</a> <a href="/tags/2020/" style="font-size: 16.67px;">2020</a> <a href="/tags/AFNetworking-SecurityPolicy/" style="font-size: 10px;">AFNetworking SecurityPolicy</a> <a href="/tags/Apple公司/" style="font-size: 10px;">Apple公司</a> <a href="/tags/Block-user/" style="font-size: 10px;">Block user</a> <a href="/tags/CD/" style="font-size: 10px;">CD</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Continuous-Delivery/" style="font-size: 10px;">Continuous Delivery</a> <a href="/tags/Continuous-Deployment/" style="font-size: 10px;">Continuous Deployment</a> <a href="/tags/Continuous-Integration/" style="font-size: 10px;">Continuous Integration</a> <a href="/tags/CoreBluetooth/" style="font-size: 10px;">CoreBluetooth</a> <a href="/tags/CoreData/" style="font-size: 10px;">CoreData</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/DS-Store/" style="font-size: 10px;">DS_Store</a> <a href="/tags/Demo/" style="font-size: 15px;">Demo</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/EDGE浏览器/" style="font-size: 10px;">EDGE浏览器</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/Fiddler/" style="font-size: 10px;">Fiddler</a> <a href="/tags/Framework/" style="font-size: 11.67px;">Framework</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IE浏览器/" style="font-size: 10px;">IE浏览器</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 11.67px;">Markdown</a> <a href="/tags/NTFS/" style="font-size: 10px;">NTFS</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Scrapy/" style="font-size: 11.67px;">Scrapy</a> <a href="/tags/TLS/" style="font-size: 10px;">TLS</a> <a href="/tags/Tesseract/" style="font-size: 10px;">Tesseract</a> <a href="/tags/WWDC/" style="font-size: 10px;">WWDC</a> <a href="/tags/Windows10/" style="font-size: 11.67px;">Windows10</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/cross-platform/" style="font-size: 10px;">cross platform</a> <a href="/tags/crypt/" style="font-size: 10px;">crypt</a> <a href="/tags/decrypt/" style="font-size: 10px;">decrypt</a> <a href="/tags/domain/" style="font-size: 11.67px;">domain</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/exif/" style="font-size: 10px;">exif</a> <a href="/tags/fastlane/" style="font-size: 10px;">fastlane</a> <a href="/tags/fork/" style="font-size: 10px;">fork</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 11.67px;">github</a> <a href="/tags/gpx文件/" style="font-size: 10px;">gpx文件</a> <a href="/tags/howto/" style="font-size: 10px;">howto</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pdf/" style="font-size: 11.67px;">pdf</a> <a href="/tags/pyenv/" style="font-size: 11.67px;">pyenv</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/swift/" style="font-size: 11.67px;">swift</a> <a href="/tags/sync/" style="font-size: 10px;">sync</a> <a href="/tags/timeout/" style="font-size: 10px;">timeout</a> <a href="/tags/udp/" style="font-size: 10px;">udp</a> <a href="/tags/出版社2020年春季学期使用教科书/" style="font-size: 10px;">出版社2020年春季学期使用教科书</a> <a href="/tags/前端/" style="font-size: 11.67px;">前端</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/图片/" style="font-size: 11.67px;">图片</a> <a href="/tags/地理/" style="font-size: 10px;">地理</a> <a href="/tags/域名/" style="font-size: 11.67px;">域名</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/抓包/" style="font-size: 10px;">抓包</a> <a href="/tags/拉黑/" style="font-size: 10px;">拉黑</a> <a href="/tags/持续交付/" style="font-size: 10px;">持续交付</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/文件格式转换/" style="font-size: 11.67px;">文件格式转换</a> <a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a> <a href="/tags/版权插件/" style="font-size: 10px;">版权插件</a> <a href="/tags/网络打印机/" style="font-size: 10px;">网络打印机</a> <a href="/tags/蓝牙/" style="font-size: 10px;">蓝牙</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/评论插件/" style="font-size: 10px;">评论插件</a> <a href="/tags/跨平台/" style="font-size: 10px;">跨平台</a> <a href="/tags/转发/" style="font-size: 10px;">转发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/bc0a9335c27/2099-06-01-myDomain闲置域名转让/">闲置域名转让</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-17-Demo之iOS使用CoreData/">2020-02-17-Demo之iOS使用CoreData</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-15-AFNetworking添加SecurityPolicy解决上传文件时https请求Status Code 200(正常)Request failed unacceptable content-type问题/">2020-02-15-AFNetworking添加SecurityPolicy解决上传文件时https请求Status Code 200(正常)Request failed unacceptable content-type问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-13-Scrapy爬虫Demo_抓取出版社2020年春季学期使用教科书/">2020-02-13-Scrapy爬虫Demo_抓取出版社2020年春季学期使用教科书</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App/">2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011-2020 foolsparadise<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <div style="display:none">
+      <!-- 统计代码 -->
+      <br>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277988423'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1277988423%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+      <!-- 统计代码 -->
+      <br>
+      <script type="text/javascript" src="https://js.users.51.la/20311135.js"></script>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/aboutme" class="mobile-nav-link">About关于本站</a>
+  
+</nav>
+    
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

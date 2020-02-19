@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2019-07-14-Windows10如何添加网络打印机 | foolsparadise虚拟世界愚者乐园!天堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=62605983" charset="UTF-8"></script> -->
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">foolsparadise虚拟世界愚者乐园!天堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/aboutme">About关于本站</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://foolsparadise.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-07-14-Windows10如何添加网络打印机" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/bc0a9335c27/2019-07-14-Windows10如何添加网络打印机/" class="article-date">
+  <time datetime="2019-07-14T06:17:55.000Z" itemprop="datePublished">2019-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/2019/">2019</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2019-07-14-Windows10如何添加网络打印机
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
+<li>2台PC 都是 Windows10系统  </li>
+<li>1台PC 的 USB 连网络打印机并共享，要确认打印机已开机且已共享  </li>
+<li>另1台PC 添加网络打印机  </li>
+</ul>
+<h3 id="在需要添加网络打印机的PC上操作如下"><a href="#在需要添加网络打印机的PC上操作如下" class="headerlink" title="在需要添加网络打印机的PC上操作如下"></a>在需要添加网络打印机的PC上操作如下</h3><ul>
+<li>1文件共享支持<br>在控制面板中找到（程序和功能）-点击右边的（打开或关闭WINDOWS功能）-下拉找到（SMB1.0/CIFS 文件共享支持）点击勾选。  </li>
+<li>2开启来宾账户<br>同时按下微软键和R键在弹出的输入框输入gpedit.msc。在计算机配置中点击管理模板-网络-右侧的“Lanman工作站”,找到“启用不安全的来宾登录”。点击左边的已启用。<br>另外，在 计算机管理 -&gt; 系统工具 -&gt; 本地用户组 -&gt; 用户 -&gt; Guest 确认未勾选账户已禁用  </li>
+<li>3开启下面两个服务<br>接着：window +R 组合快捷键，输入 services.msc，开启“服务”；<br>确认开启下面两个服务：<br>Computer Browser<br>Print Spooler</li>
+<li>4添加<br>在开始菜单中进入“设置“<br>在设置菜单中选中“设备“进入<br>左边选择“打印机和扫描仪“<br>右边点击“添加打印机或扫描仪“自动进行搜索打印设备<br>如果搜索不到，点击下面的“我需要的打印机不在列表中“<br>到这一步，我们就可以选择自己的打印机位置地址，如果是共享的打印机，点选“按名称选择共享打印机“然后输入地址，或者浏览中找到连接。<br>此处我输入共享打印机PC电脑的IP地址  </li>
+</ul>
+<h3 id="参考链："><a href="#参考链：" class="headerlink" title="参考链："></a>参考链：</h3><p><a href="https://jingyan.baidu.com/article/48206aead02b57216bd6b372.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/48206aead02b57216bd6b372.html</a><br><a href="https://blog.csdn.net/heatting/article/details/85989705" target="_blank" rel="noopener">https://blog.csdn.net/heatting/article/details/85989705</a><br><a href="https://blog.csdn.net/elie_yang/article/details/87799550" target="_blank" rel="noopener">https://blog.csdn.net/elie_yang/article/details/87799550</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foolsparadise.cn/2019/bc0a9335c27/2019-07-14-Windows10如何添加网络打印机/" data-id="ck028sccc0015km53yoqti2g2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2019/">2019</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows10/">Windows10</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络打印机/">网络打印机</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/bc0a9335c27/2019-07-16-前端之CDN加速js库/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2019-07-16-前端之CDN加速js库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/bc0a9335c27/2019-07-11-如何让Git忽略.DS_Store文件(Mac系统环境)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2019-07-11-如何让git忽略.DS_Store文件(Mac系统环境)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+  <! -- 添加版权信息 -->
+<div class="article-footer-copyright">
+<center>本文由 <b><a href="/about" target="_blank" title="foolsparadise">foolsparadise</a></b> 创作和发表，采用 <b>GPL-2.0</b> 国际许可协议进行许可</center>
+
+<center>本文作者为 <b><a href="/about" target="_blank" title="foolsparadise">foolsparadise</a></b> 转载请注明作者及出处</center>
+
+<center>本文标题为 <b><a href="/2019/bc0a9335c27/2019-07-14-Windows10如何添加网络打印机/" target="_blank" title="2019-07-14-Windows10如何添加网络打印机">2019-07-14-Windows10如何添加网络打印机</a></b></center>
+
+<center>本文链接为 <b><a href="/2019/bc0a9335c27/2019-07-14-Windows10如何添加网络打印机/" target="_blank" title="2019-07-14-Windows10如何添加网络打印机">https://foolsparadise.cn/2019/bc0a9335c27/2019-07-14-Windows10如何添加网络打印机/</a></b>.</center>
+</div>
+<! -- 添加版权信息 -->
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2011/" style="font-size: 10px;">2011</a> <a href="/tags/2017/" style="font-size: 10px;">2017</a> <a href="/tags/2018/" style="font-size: 18.33px;">2018</a> <a href="/tags/2019/" style="font-size: 20px;">2019</a> <a href="/tags/2020/" style="font-size: 16.67px;">2020</a> <a href="/tags/AFNetworking-SecurityPolicy/" style="font-size: 10px;">AFNetworking SecurityPolicy</a> <a href="/tags/Apple公司/" style="font-size: 10px;">Apple公司</a> <a href="/tags/Block-user/" style="font-size: 10px;">Block user</a> <a href="/tags/CD/" style="font-size: 10px;">CD</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Continuous-Delivery/" style="font-size: 10px;">Continuous Delivery</a> <a href="/tags/Continuous-Deployment/" style="font-size: 10px;">Continuous Deployment</a> <a href="/tags/Continuous-Integration/" style="font-size: 10px;">Continuous Integration</a> <a href="/tags/CoreBluetooth/" style="font-size: 10px;">CoreBluetooth</a> <a href="/tags/CoreData/" style="font-size: 10px;">CoreData</a> <a href="/tags/C语言/" style="font-size: 11.67px;">C语言</a> <a href="/tags/DS-Store/" style="font-size: 10px;">DS_Store</a> <a href="/tags/Demo/" style="font-size: 15px;">Demo</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/EDGE浏览器/" style="font-size: 10px;">EDGE浏览器</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/Fiddler/" style="font-size: 10px;">Fiddler</a> <a href="/tags/Framework/" style="font-size: 11.67px;">Framework</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IE浏览器/" style="font-size: 10px;">IE浏览器</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 11.67px;">Markdown</a> <a href="/tags/NTFS/" style="font-size: 10px;">NTFS</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Scrapy/" style="font-size: 11.67px;">Scrapy</a> <a href="/tags/TLS/" style="font-size: 10px;">TLS</a> <a href="/tags/Tesseract/" style="font-size: 10px;">Tesseract</a> <a href="/tags/WWDC/" style="font-size: 10px;">WWDC</a> <a href="/tags/Windows10/" style="font-size: 11.67px;">Windows10</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/cross-platform/" style="font-size: 10px;">cross platform</a> <a href="/tags/crypt/" style="font-size: 10px;">crypt</a> <a href="/tags/decrypt/" style="font-size: 10px;">decrypt</a> <a href="/tags/domain/" style="font-size: 11.67px;">domain</a> <a href="/tags/encrypt/" style="font-size: 10px;">encrypt</a> <a href="/tags/exif/" style="font-size: 10px;">exif</a> <a href="/tags/fastlane/" style="font-size: 10px;">fastlane</a> <a href="/tags/fork/" style="font-size: 10px;">fork</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 11.67px;">github</a> <a href="/tags/gpx文件/" style="font-size: 10px;">gpx文件</a> <a href="/tags/howto/" style="font-size: 10px;">howto</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pdf/" style="font-size: 11.67px;">pdf</a> <a href="/tags/pyenv/" style="font-size: 11.67px;">pyenv</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/swift/" style="font-size: 11.67px;">swift</a> <a href="/tags/sync/" style="font-size: 10px;">sync</a> <a href="/tags/timeout/" style="font-size: 10px;">timeout</a> <a href="/tags/udp/" style="font-size: 10px;">udp</a> <a href="/tags/出版社2020年春季学期使用教科书/" style="font-size: 10px;">出版社2020年春季学期使用教科书</a> <a href="/tags/前端/" style="font-size: 11.67px;">前端</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/图片/" style="font-size: 11.67px;">图片</a> <a href="/tags/地理/" style="font-size: 10px;">地理</a> <a href="/tags/域名/" style="font-size: 11.67px;">域名</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/抓包/" style="font-size: 10px;">抓包</a> <a href="/tags/拉黑/" style="font-size: 10px;">拉黑</a> <a href="/tags/持续交付/" style="font-size: 10px;">持续交付</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/文件格式转换/" style="font-size: 11.67px;">文件格式转换</a> <a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a> <a href="/tags/版权插件/" style="font-size: 10px;">版权插件</a> <a href="/tags/网络打印机/" style="font-size: 10px;">网络打印机</a> <a href="/tags/蓝牙/" style="font-size: 10px;">蓝牙</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/评论插件/" style="font-size: 10px;">评论插件</a> <a href="/tags/跨平台/" style="font-size: 10px;">跨平台</a> <a href="/tags/转发/" style="font-size: 10px;">转发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/bc0a9335c27/2099-06-01-myDomain闲置域名转让/">闲置域名转让</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-17-Demo之iOS使用CoreData/">2020-02-17-Demo之iOS使用CoreData</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-15-AFNetworking添加SecurityPolicy解决上传文件时https请求Status Code 200(正常)Request failed unacceptable content-type问题/">2020-02-15-AFNetworking添加SecurityPolicy解决上传文件时https请求Status Code 200(正常)Request failed unacceptable content-type问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-13-Scrapy爬虫Demo_抓取出版社2020年春季学期使用教科书/">2020-02-13-Scrapy爬虫Demo_抓取出版社2020年春季学期使用教科书</a>
+          </li>
+        
+          <li>
+            <a href="/2020/bc0a9335c27/2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App/">2020-02-10-howto如何使用漂逸算法及边改iOS的swift语言Struct式的Framework边调App</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011-2020 foolsparadise<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <div style="display:none">
+      <!-- 统计代码 -->
+      <br>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277988423'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1277988423%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+      <!-- 统计代码 -->
+      <br>
+      <script type="text/javascript" src="https://js.users.51.la/20311135.js"></script>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/aboutme" class="mobile-nav-link">About关于本站</a>
+  
+</nav>
+    
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
